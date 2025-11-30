@@ -1,0 +1,28 @@
+<div style="width:700px;margin: 0px auto;">
+  <table width="700" border="0" align="center" cellpadding="4" cellspacing="0">
+    <tr>
+      <td style="border-bottom: 1px solid; border-color: #cccccc;" align="right">
+        <img src="{$logo_path}logo.gif" alt="Shoplogo" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+          <strong>{if $GENDER == 'm'}Dear Mr.{elseif $GENDER == 'f'}Dear Ms./Mrs.{else}Hello{/if} {$LASTNAME},</strong><br />
+          <br />
+          thank you for your order {if $ORDER_NR}No. {$ORDER_NR}{/if} {if $ORDER_DATE}from {$ORDER_DATE}{/if}.<br />
+          <br />
+          {if $ORDER_LINK}Link to order:
+          <a href="{$ORDER_LINK}">click here</a>
+          {/if}
+          <br />
+          We attached you a {$PDFINVOICE_TYPE} for your articles.<br />
+          <br />
+          <br />
+        </font>
+      </td>
+    </tr>
+  </table>
+</div>
+
+[SIGNATUR]

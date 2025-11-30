@@ -1,0 +1,40 @@
+# Headertexte #
+text_pdfinvoice_seite = 'Page'
+text_pdfinvoice_seite_von = 'of'
+
+# Footer texts #
+text_pdf_anschrift = 'Address:<br>NAME NAME<br>STREET 12<br>12345 CITY<br>COUNTRY'
+text_pdf_kontakt = 'Contact:<br>email@domain.de'
+text_pdf_bank = 'Banking account:<br>Account owner: NAME NAME<br>Account number: 123456789<br>Bank code: 250 501 10<br>IBAN: 123 456 789<br>BIC: 1234567890<br>Bank: BANK'
+text_pdf_geschaeft = 'Owner:<br>NAME NAME<br>VAT-ID: DE 123 456 789'
+
+# Text above the recipient's address #
+text_pdf_shopadresseklein = 'domain.de - NAME NAME - STREET 123 - D.12345 CITY'
+
+# Heading: Invoice or Packing slip #
+text_pdf_rechnung = 'Your bill'
+text_pdf_lieferschein = 'Packing slip'
+
+# Text below the heading #
+text_pdf_anrede_mann = 'Dear Mr. %s,<br>Thank you for shopping with DOMAIN.de! The details of your order are listed bellow.'
+text_pdf_anrede_frau = 'Dear Mrs. %s,<br>Thank you for shopping with DOMAIN.de! The details of your order are listed bellow.'
+text_pdf_anrede_unisex = 'Hallo %s,<br>Thank you for shopping with DOMAIN.de! The details of your order are listed bellow.'
+
+# Closing text below the ordered items invoice and packing slip #
+text_pdf_danketext = 'Thank you for your purchase!<br>Please come visit us again at DOMAIN.de!'
+text_pdf_ldanketext = 'Thank you for your purchase!<br>Please come visit us again at DOMAIN.de!'
+
+# Additional text will be inserted below the closing text. #
+# text_pdf_custom = '' bedeutet, dass Text nicht angezeigt wird #
+text_pdf_custom = 'Zusätzlicher Text!'
+
+# Closing text - last text in invoice and packing slip #
+text_pdf_schlusstext = 'The date of the delivery note corresponds to the service date.<br>Our general terms and conditions apply.'
+text_pdf_lschlusstext = 'The date of the delivery note corresponds to the service date.<br>Our general terms and conditions apply.'
+
+# Text will be inserted into invoice or packing slip emails #
+text_pdf_mail_rechnung = 'Your bill'
+text_pdf_mail_lieferschein = 'packing slip'
+
+qr_head = 'Quick access to articles via QR code'
+qr_art_nr = 'Art.:'

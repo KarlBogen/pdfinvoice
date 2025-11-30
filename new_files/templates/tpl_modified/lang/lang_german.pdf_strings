@@ -1,0 +1,42 @@
+# Headertexte #
+text_pdfinvoice_seite = 'Seite'
+text_pdfinvoice_seite_von = 'von'
+
+# Footertexte #
+text_pdf_anschrift = 'Anschrift:<br>NAME NAME<br>STRASSE 123<br>12345 STADT<br>LAND'
+text_pdf_kontakt = 'Kontakt:<br>email@domain.de'
+text_pdf_bank = 'Bankverbindung:<br>Kontoinhaber: NAME NAME<br>Konto: 123 456 78<br>BLZ: 000 000 00<br>IBAN: 123 456 789'
+text_pdf_geschaeft = 'Geschäftsinhaber:<br>NAME NAME<br>USt-IdNr.: DE 123 456 789'
+
+# Text oberhalb der Empfängeradresse #
+text_pdf_shopadresseklein = 'domain.de - NAME NAME - STRASSE 123 - D.12345 STADT'
+
+# Überschrift Rechnung bzw. Lieferschein #
+text_pdf_rechnung = 'Ihre Rechnung'
+text_pdf_lieferschein = 'Ihr Lieferschein'
+
+# Text unterhalb der Überschrift #
+text_pdf_anrede_mann = 'Sehr geehrter Herr %s,<br>wir freuen uns, dass Sie bei DOMAIN.de bestellt haben.'
+text_pdf_anrede_frau = 'Sehr geehrte Frau %s,<br>wir freuen uns, dass Sie bei DOMAIN.de bestellt haben.'
+text_pdf_anrede_unisex = 'Hallo %s,<br>wir freuen uns, dass Sie bei DOMAIN.de bestellt haben.'
+
+# Schlusstext unterhalb der bestellten Artikel Rechnung / Lieferschein #
+text_pdf_danketext = 'Vielen Dank für Ihren Auftrag!<br>Besuchen Sie uns wieder unter DOMAIN.de!'
+text_pdf_ldanketext = 'Vielen Dank für Ihren Auftrag!<br>Besuchen Sie uns wieder unter DOMAIN.de!'
+
+# Zusätzlicher Text wird unterhalb des Schlusstextes eingefügt #
+# text_pdf_custom = '' bedeutet, dass Text nicht angezeigt wird #
+text_pdf_custom = 'Zus&auml;tzlicher Text!'
+
+# Schlusstext letzter Text in Rechnung / Lieferschein #
+text_pdf_schlusstext = 'Leistungsdatum entspricht Rechnungsdatum.<br>Es gelten unsere Allgemeinen Gesch&auml;ftsbedingungen.'
+text_pdf_lschlusstext = 'Leistungsdatum entspricht Rechnungsdatum.<br>Es gelten unsere Allgemeinen Gesch&auml;ftsbedingungen.'
+
+# Text wird in Rechnungs- bzw. Lieferschein-E-Mail eingefügt #
+text_pdf_mail_rechnung = 'Ihre Rechnung'
+text_pdf_mail_lieferschein = 'Ihr Lieferschein'
+
+qr_head = 'Artikel-Schnellzugriff per QR-Code'
+qr_art_nr = 'Art.:'
+
+head_units = 'Menge:'

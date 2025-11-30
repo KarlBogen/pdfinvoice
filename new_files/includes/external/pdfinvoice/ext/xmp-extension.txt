@@ -1,0 +1,6 @@
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:fx="urn:factur-x:pdfa:CrossIndustryDocument:invoice:1p0#" xmlns:pdf="http://ns.adobe.com/pdf/1.3/" xmlns:pdfaExtension="http://www.aiim.org/pdfa/ns/extension/" xmlns:pdfaProperty="http://www.aiim.org/pdfa/ns/property#" xmlns:pdfaSchema="http://www.aiim.org/pdfa/ns/schema#" xmlns:pdfaid="http://www.aiim.org/pdfa/ns/id/" xmlns:xmp="http://ns.adobe.com/xap/1.0/" rdf:about="">
+    <fx:DocumentType>INVOICE</fx:DocumentType>
+    <fx:DocumentFileName>factur-x.xml</fx:DocumentFileName>
+    <fx:Version>1.0</fx:Version>
+    <fx:ConformanceLevel>EXTENDED</fx:ConformanceLevel>
+  </rdf:Description>
