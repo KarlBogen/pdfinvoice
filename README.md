@@ -6,14 +6,15 @@
 
 Mit dieser Erweiterung können Rechnungen und Lieferscheine im PDF-Format erstellt und per Mail versandt werden.
 
-Als Generator wird die PHP Bibliothek „html2pdf“ (<a href="https://github.com/spipu/html2pdf">spipu/html2pdf</a>) genutzt.
+Als Generator wird die PHP Bibliothek „**html2pdf**“ (<a href="https://github.com/spipu/html2pdf">spipu/html2pdf</a>) genutzt.
 
 Html2Pdf ist ein HTML zu PDF Konverter, spezielle Tags sind hinzugefügt worden um HTML mit PDF kompatibel zu machen.
 
-Für den PDF Bereich wird „TCPDF“ genutzt.
+Für den PDF Bereich wird „**TCPDF**“ genutzt.
 
 <br />
 
+> [!TIP]
 > Hinweis: Das Modul ist vorbereitet für die Anbindung an das Systemmodul "*E-Rechnungen für modified eCommerce Shopsoftware*" von AGI.
 > Das Paket "agi_factur_x..." kann bei Modified heruntergeladen werden.
 > Sobald "E-Rechnung" installiert und aktiviert ist wird der PDF-Datei die E-Rechnung beigefügt.
