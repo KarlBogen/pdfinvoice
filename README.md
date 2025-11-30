@@ -2,7 +2,7 @@
 
 **Ein Systemmodul für die *mod*ified eCommerce Shopsoftware**
 
-<img align="left" src="images/screenshot_31_pdf_erstellen.png"><img src="images/screenshot_32_pdf_erstellen.png">
+<img align="left" src="images/screenshot_31_pdf_erstellen.png" width="200"><img src="images/screenshot_32_pdf_erstellen.png" width="200">
 
 Mit dieser Erweiterung können Rechnungen und Lieferscheine im PDF-Format erstellt und per Mail versandt werden.
 
