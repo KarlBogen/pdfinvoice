@@ -2,6 +2,8 @@
 
 **Ein Systemmodul für die *mod*ified eCommerce Shopsoftware**
 
+<img align="left" src="images/screenshot_31_pdf_erstellen.png"><img src="images/screenshot_32_pdf_erstellen.png">
+
 Mit dieser Erweiterung können Rechnungen und Lieferscheine im PDF-Format erstellt und per Mail versandt werden.
 
 Als Generator wird die PHP Bibliothek „html2pdf“ (<a href="https://github.com/spipu/html2pdf">spipu/html2pdf</a>) genutzt.
