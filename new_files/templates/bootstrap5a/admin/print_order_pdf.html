@@ -64,6 +64,7 @@ ul.attributes_list li{padding: 3px;}
 div.hr_5{height:1px;  line-height:1px;  margin:5px 0px;  padding:0;  display:block;  border-bottom:solid 1px #ccc;  background-color:transparent;  width:100%;}
 
 /* PDF QR-Codes */
+table.qrcodes{font-size:13px;  line-height:19px;  width:100%;}
 div.qr p {font-size:10px;margin:5px 0;text-align: center;}
 div.qr .num {font-size:10px;text-align: center;}
 
@@ -286,7 +287,7 @@ div.qr .num {font-size:10px;text-align: center;}
   <nobreak>
     <div class="hr_5"></div>
     <strong>{#qr_head#}</strong><br>
-    <table class="total_table qrcodes">
+    <table class="qrcodes">
       <tr>
         {foreach name=aussen item=order_values from=$order_data}
           <td style="width: 20%;">
@@ -301,14 +302,13 @@ div.qr .num {font-size:10px;text-align: center;}
             </table>
               </nobreak>
               <nobreak>
-            <table class="total_table">
+            <table class="qrcodes">
             <tr>
           {/if}
         {/foreach}
       </tr>
     </table>
   </nobreak>
-  <br>
   {/if}
   {* EOF QR-Codes *}
 </page>

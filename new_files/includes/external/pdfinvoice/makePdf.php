@@ -165,10 +165,14 @@ class makePdf
     $pdf_smarty->config_dir = DIR_FS_CATALOG . 'lang';
 
     if ($deliverSlip === false) {
-      $pdfhtml = $pdf_smarty->fetch(CURRENT_TEMPLATE . '/admin/print_order_pdf.html');
+      $tpl = 'print_order_pdf.html';
     } else {
-      $pdfhtml = $pdf_smarty->fetch(CURRENT_TEMPLATE . '/admin/print_packingslip_pdf.html');
+      $tpl = 'print_packingslip_pdf.html';
     }
+
+    foreach(auto_include(DIR_FS_EXTERNAL . 'pdfinvoice/extra/','php') as $file) require ($file);
+
+    $pdfhtml = $pdf_smarty->fetch(CURRENT_TEMPLATE . '/admin/' . $tpl);
     $this->pdfhtml = $pdfhtml;
 
     return;

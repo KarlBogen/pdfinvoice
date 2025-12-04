@@ -17,7 +17,14 @@ table.page_footer {width: 180mm; border-top: 1px solid #222; vertical-align: top
 table.page_footer td {width: 25%; padding-top: 3px;}
 
 /* PDF Logo */
-.logo {position:absolute; top: -50px; left: 0;}
+.header {position:absolute; top: -32px; left: -20mm; height: 10mm; width: 220mm;line-height:10mm; vertical-align: middle;}
+.header span {font-size: 24px; margin-left:20mm;}
+.logo {position:absolute; top: -55px; right: 0; padding: 0 10px; border-style: solid; border-width: 5px; border-radius: 5mm; -moz-border-radius: 5mm;}
+
+.gray .header {background: #f4f4f4;}
+.gray .header span {color: #222;}
+.gray .logo {background: #fff;border-color: #999;}
+.gray table.order_table .headerrow {background: #f4f4f4;}
 
 /* PDF Falz- und Lochermarken */
 .marker{position:absolute; left:-18mm;  height:1px;  line-height:1px;  margin:0;  padding:0;  display:block;  border-bottom:solid 1px #ccc;  background-color:transparent; width:5mm;}
@@ -28,7 +35,7 @@ table.page_footer td {width: 25%; padding-top: 3px;}
 /* PDF Infoblock Bestellnummer, Datum, ... */
 .invoice_info{position:absolute;top:70px;right:0;width:48%;}
 .invoice_info_head{text-align:center;background-color:#f4f4f4;padding:10px;}
-.invoice_info_text{background-color:#f4f4f4;margin-top:2px;padding:5px;}
+.invoice_info_text{background-color:#f4f4f4;margin-top:2px;padding:5px;line-height:2;}
 
 /* PDF Adressblock */
 .invoice_adress{position:absolute;top:100px;left:0;width:48%;}
@@ -51,11 +58,13 @@ table.order_table .col4 {width: 16%;}
 table.order_table .col5, table.total_table .col2 {width: 17%;}
 table.order_table .col3-5 {width: 50%;}
 table.total_table .col1 {width: 83%;}
+table.total_table {border-bottom: 4px double #ccc;}
 /* PDF Artikel- und Summenblock - Text-Ausrichtung */
 .color_ot_total{color:#A94442;}
 .ord_table_center{text-align:center;}
 .ord_table_left{text-align:left;}
 .ord_table_right{text-align:right;}
+.ord_table_center{text-align:center;}
 /* PDF Artikel- und Summenblock - Attribute */
 ul.attributes_list{list-style-type:disc; font-size:12px; font-style:italic;margin: -15px;}
 ul.attributes_list li{padding: 3px;}
@@ -66,7 +75,7 @@ div.hr_5{height:1px;  line-height:1px;  margin:5px 0px;  padding:0;  display:blo
 /* PDF QR-Codes */
 table.qrcodes{font-size:13px;  line-height:19px;  width:100%;}
 div.qr p {font-size:10px;margin:5px 0;text-align: center;}
-div.qr .num {font-size:10px;text-align: center;}
+div.qr {font-size:10px;text-align: center;}
 
 /* PDF Hilfsklassen */
 .mt-20 {margin-top: 20px;}
@@ -77,7 +86,7 @@ div.qr .num {font-size:10px;text-align: center;}
 
 </style>
 {/literal}
-<page backtop="10mm" backleft="20mm" backright="15mm" backbottom="26mm" style="font-size: 14px; background:#fff none; color:#222;line-height:1.3;">
+<page class="gray" backtop="10mm" backleft="20mm" backright="15mm" backbottom="26mm" style="font-size: 14px; background:#fff none; color:#222;line-height:1.3;">
 
   {* BOF html2pdf Header wird auf jeder Seite angezeigt *}
   <page_header>
@@ -103,6 +112,9 @@ div.qr .num {font-size:10px;text-align: center;}
   {* EOF html2pdf Footer wird auf jeder Seite angezeigt *}
 
   {* BOF Logo wird absolute positioniert *}
+          <div class="header">
+            <span>{$smarty.const.STORE_NAME}</span>
+          </div>
   <div class="logo"><img src="{$logo_path}logo_invoice.png" alt="{$smarty.const.STORE_NAME}" /></div>
   {* EOF Logo wird absolute positioniert *}
 
@@ -123,30 +135,28 @@ div.qr .num {font-size:10px;text-align: center;}
   <div class="invoice_info">
     <div class="invoice_info_head"><strong>{#invoice#}</strong></div>
     <div class="invoice_info_text">
-      {if $csID}<strong>{#csID#}</strong> {$csID}<br>{/if}
-      <strong>{#order#}</strong> {$oID}<br>
-      <strong>{#date#}</strong> {$DATE}<br>
       {if isset($INVOICE_NUMBER) && $INVOICE_NUMBER != '' }
       <strong>{#invoice_number#}</strong> {$INVOICE_NUMBER}<br>
       <strong>{#invoice_date#}</strong> {$INVOICE_DATE}<br>
-      <strong>{#performance_date#}</strong> {$INVOICE_DATE}<br>
       {/if}
-      <strong>{#payment#}</strong> {$PAYMENT_METHOD}
+      {if $csID}<strong>{#csID#}</strong> {$csID}<br>{/if}
       {if $vatID}<br><strong>{#vatID#}</strong> {$vatID}{/if}
     </div>
   </div>
   {* EOF Rechnunghinweise werden fixed positioniert *}
 
   {* BOF Überschrift und Anrede *}
-  <div class="invoice-heading">{#text_pdf_rechnung#}</div>
-  <div>
-    {if $gender == 'm'}
-    {$smarty.config.text_pdf_anrede_mann|sprintf:$name}
-    {else if $gender == 'f'}
-    {$smarty.config.text_pdf_anrede_frau|sprintf:$name}
-    {else}
-    {$smarty.config.text_pdf_anrede_unisex|sprintf:$name}
-    {/if}
+  <div class="invoice-heading">{#invoice#}</div>
+  <div class="invoice_text">
+    <table cellspacing="5px" style="width: 100%;">
+      <tr>
+        <td style="width: 80%;">{#order#}<strong> {$oID}</strong></td>
+        <td style="width: 20%; text-align: right;">{#date#}<strong> {$DATE}</strong></td>
+      </tr>
+      <tr>
+        <td colspan="2">{#payment#}<strong> {$PAYMENT_METHOD}</strong></td>
+      </tr>
+    </table>
   </div>
   {* EOF Überschrift und Anrede *}
 
@@ -160,17 +170,18 @@ div.qr .num {font-size:10px;text-align: center;}
       <col class="col5">
     </colgroup>
     <tr class="headerrow">
-      <th class="ord_table_left">{#head_units#}</th>
+      <th class="ord_table_left">Pos.:</th>
       <th class="ord_table_left">{#head_products#}</th>
-      <th class="ord_table_right">{#head_artnr#}</th>
+      <th class="ord_table_center">{#head_units#}</th>
       <th class="ord_table_right">{#head_single_price#}</th>
       <th class="ord_table_right">{#head_price#}</th>
     </tr>
     {foreach name=aussen item=order_values from=$order_data}
     <tr class="mainrow">
-      <td class="ord_table_left">{$order_values.PRODUCTS_QTY}&nbsp;x</td>
+      <td class="ord_table_left">{$order_values@iteration}</td>
       <td class="ord_table_left">
         <strong>{$order_values.PRODUCTS_NAME}</strong>
+        <br>{$order_values.PRODUCTS_MODEL} {$order_values.PRODUCTS_ATTRIBUTES_MODEL}
         {if sizeof($order_values.PRODUCTS_ATTRIBUTES_ARRAY) > 0}
         <ul class="attributes_list">
           {foreach key=a_data item=attrib_data from=$order_values.PRODUCTS_ATTRIBUTES_ARRAY}
@@ -179,7 +190,7 @@ div.qr .num {font-size:10px;text-align: center;}
         </ul>
         {/if}
       </td>
-      <td class="ord_table_right">{$order_values.PRODUCTS_MODEL} {$order_values.PRODUCTS_ATTRIBUTES_MODEL}</td>
+      <td class="ord_table_center">{$order_values.PRODUCTS_QTY}</td>
       <td class="ord_table_right">{$order_values.PRODUCTS_SINGLE_PRICE}</td>
       <td class="ord_table_right">{$order_values.PRODUCTS_PRICE}</td>
     </tr>
@@ -188,7 +199,7 @@ div.qr .num {font-size:10px;text-align: center;}
   <nobreak>
     <div class="hr_5"></div>
     {if sizeof($order_total) > 0}
-    <table class="total_table">
+    <table class="total_table sum_block">
       <colgroup>
         <col class="col1">
         <col class="col2">
@@ -205,7 +216,7 @@ div.qr .num {font-size:10px;text-align: center;}
   <br>
   {* EOF Artikelliste und Summenblock *}
 
-  {* BOF Danketext *}
+  {* BOF Danketext}
   {if $smarty.config.text_pdf_danketext != ''}
   <nobreak>
     <div class="mt-20">
@@ -214,9 +225,9 @@ div.qr .num {font-size:10px;text-align: center;}
   </nobreak>
   <br>
   {/if}
-  {* EOF Danketext *}
+  { EOF Danketext *}
 
-  {* BOF Zusatztext *}
+  {* BOF Zusatztext }
   {if $smarty.config.text_pdf_custom != ''}
   <nobreak>
     <div class="mt-10">
@@ -225,7 +236,7 @@ div.qr .num {font-size:10px;text-align: center;}
   </nobreak>
   <br>
   {/if}
-  {* EOF Zusatztext *}
+  { EOF Zusatztext *}
 
   {* BOF Steuerinformation *}
   {if isset($vat_info) && $vat_info != 0}
@@ -292,7 +303,7 @@ div.qr .num {font-size:10px;text-align: center;}
         {foreach name=aussen item=order_values from=$order_data}
           <td style="width: 20%;">
             <div class="qr">
-              <qrcode value="{$base_href}/product_info.php?products_id={$order_values.PRODUCTS_ID}" ec="Q" style="width: 30mm;"></qrcode>
+              <qrcode value="{$base_href}/product_info.php?products_id={$order_values.PRODUCTS_ID}" ec="Q" style="width: 25mm;"></qrcode>
               <p>{$order_values.PRODUCTS_NAME}</p>
               {* Anzeige Artikelnummer auskommentiert }<div class="num">{#qr_art_nr#} {$order_values.PRODUCTS_MODEL}</div>{ Ende auskommentieren *}
             </div>
