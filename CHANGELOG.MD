@@ -1,6 +1,7 @@
 UNRELEASED
 
 
+- Button Rechnungsnummer entfernen, wenn "Bestellnummer als Rechnungsnummer" aktiviert ist
 - In Datei "includes/external/pdfinvoice/makePdf.php" Funktion "auto_include" hinzugefügt,
   dadurch können alternative Templatedateien updatesicher eingebunden, oder Smarty-Variablen gesetzt werden
 

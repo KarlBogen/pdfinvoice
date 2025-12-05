@@ -21,7 +21,9 @@ if (defined('MODULE_PDFINVOICE_INVOICE_STATUS') && MODULE_PDFINVOICE_INVOICE_STA
 ?>
     <script type="text/javascript">
       $(document).ready(function() {
-        $('#buttons_block .ibillnr-btn').remove();
+        $('a[href*="subaction=set_ibillnr"]').each(function() {
+          $(this).remove();
+        });
       });
     </script>
 <?php
