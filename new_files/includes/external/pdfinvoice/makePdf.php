@@ -113,7 +113,10 @@ class makePdf
       }
     }
     // assign language to template for caching
-    $languages_query = xtc_db_query("select code, language_charset from " . TABLE_LANGUAGES . " WHERE directory ='" . $order->info['language'] . "'");
+    $languages_query = xtc_db_query("SELECT code,
+                                          language_charset
+                                     FROM " . TABLE_LANGUAGES . "
+                                    WHERE directory ='" . $order->info['language'] . "'");
     $langcode = xtc_db_fetch_array($languages_query);
     $pdf_smarty->assign('langcode', $langcode['code']);
     $pdf_smarty->assign('charset', $langcode['language_charset']);
@@ -125,24 +128,22 @@ class makePdf
     $pdf_smarty->assign('logo_path', $absolutpath . '/img/');
     $pdf_smarty->assign('tpl_path', 'templates/' . CURRENT_TEMPLATE . '/');
     if (function_exists('xtc_catalog_href_link')) {
-      $pdf_smarty->assign('base_href', xtc_catalog_href_link('', '', $request_type, false, false));
+      $pdf_smarty->assign('base_href', xtc_catalog_href_link('', '', '', false, false));
     } else {
-      $pdf_smarty->assign('base_href', xtc_href_link('', '', $request_type, false, false));
+      $pdf_smarty->assign('base_href', xtc_href_link('', '', '', false, false));
     }
 
     $pdf_smarty->assign('oID', $order->info['order_id']);
     if ($order->info['payment_method'] != '' && $order->info['payment_method'] != 'no_payment') {
       // DIR_WS_CLASSES kann nicht genutzt werden - im Checkout ist komplette Shop-URL enthalten
       require_once(DIR_FS_CATALOG . 'includes/classes/payment.php');
-      $payment_modules = new payment($order->info['payment_method']);
-      $payment_method = $payment_modules::payment_title($order->info['payment_method'], $order->info['order_id']);
+      $pdf_smarty->assign('PAYMENT_METHOD', payment::payment_title($order->info['payment_method'], $order->info['order_id'], $order->info['language']));
 
       if (in_array($order->info['payment_method'], array('paypalplus', 'paypalpui'))) {
         require_once(DIR_FS_EXTERNAL . 'paypal/classes/PayPalInfo.php');
         $paypal = new PayPalInfo($order->info['payment_method']);
         $pdf_smarty->assign('PAYMENT_INFO', $paypal->get_payment_instructions($order->info['order_id']));
       }
-      $pdf_smarty->assign('PAYMENT_METHOD', $payment_method);
     }
     $pdf_smarty->assign('COMMENTS', nl2br($order->info['comments']));
     $pdf_smarty->assign('DATE', xtc_date_long($order->info['date_purchased']));
@@ -154,7 +155,7 @@ class makePdf
     require_once(DIR_FS_CATALOG . 'includes/classes/main.php');
     $main = new main();
 
-    $invoice_data = $main->getContentData(INVOICE_INFOS);
+    $invoice_data = $main->getContentData(INVOICE_INFOS, $order->info['languages_id']);
     $pdf_smarty->assign('ADDRESS_SMALL', $invoice_data['content_heading']);
     $pdf_smarty->assign('ADDRESS_LARGE', $invoice_data['content_text']);
 
@@ -170,7 +171,7 @@ class makePdf
       $tpl = 'print_packingslip_pdf.html';
     }
 
-    foreach(auto_include(DIR_FS_EXTERNAL . 'pdfinvoice/extra/','php') as $file) require ($file);
+    foreach (auto_include(DIR_FS_EXTERNAL . 'pdfinvoice/extra/', 'php') as $file) require($file);
 
     $pdfhtml = $pdf_smarty->fetch(CURRENT_TEMPLATE . '/admin/' . $tpl);
     $this->pdfhtml = $pdfhtml;
@@ -182,6 +183,10 @@ class makePdf
   {
 
     global $order;
+
+    if (!defined('K_PATH_CACHE')) {
+      define('K_PATH_CACHE', DIR_FS_EXTERNAL . 'pdfinvoice/tmp/');
+    }
 
     require_once(DIR_FS_EXTERNAL . 'pdfinvoice/vendor/autoload.php');
 

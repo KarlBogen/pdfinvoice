@@ -27,4 +27,4 @@ Für den PDF Bereich wird „**TCPDF**“ genutzt.
 
 **Das Modul benötigt *mod*ified eCommerce Shopsoftware Version 3.0.0 oder höher**
 
-Getestet wurde das Modul mit den stable Versionen "3.1.6".
+Getestet wurde das Modul mit den stable Versionen "3.1.6" und  "3.2.0".
