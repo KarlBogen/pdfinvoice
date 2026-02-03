@@ -82,7 +82,10 @@ defined('PDFINVOICE_MAIL_SUBJECT') OR define('PDFINVOICE_MAIL_SUBJECT', 'Your in
 defined('PDFINVOICE_MAIL_SUBJECT_SLIP') OR define('PDFINVOICE_MAIL_SUBJECT_SLIP', 'Your packing slip');
 defined('TEXT_PDFINVOICE_SEITE') OR define('TEXT_PDFINVOICE_SEITE', 'Page ');
 defined('TEXT_PDFINVOICE_SEITE_VON') OR define('TEXT_PDFINVOICE_SEITE_VON', ' of ');
+defined('PDFINVOICE_PRINT_ORDER_SEND') OR define('PDFINVOICE_PRINT_ORDER_SEND', 'Send invoice via mail');
+defined('PDFINVOICE_PRINT_ORDER_DL') OR define('PDFINVOICE_PRINT_ORDER_DL', 'Download invoice');
 
+define('PDFINVOICE_CONFIRM_SEND', 'Send PDF?');
 define('BUTTON_GROUP_PDFINVOICE_INVOICE_TITLE', 'PDF Invoice:');
 define('BUTTON_INVOICE_PDF', 'Invoice PDF');
 define('BUTTON_PACKINGSLIP_PDF', 'Packing slip PDF');

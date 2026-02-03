@@ -1,7 +1,7 @@
 UNRELEASED
 
 
-
+- neue Einstellmöglichkeit im Systemmodul - Rechnung senden / herunterladen ohne iFrame
 
 1.0.1 [19.12.2025]
 - Update für Shopversion 3.2.0

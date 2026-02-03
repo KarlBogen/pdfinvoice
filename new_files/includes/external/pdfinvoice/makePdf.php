@@ -156,8 +156,8 @@ class makePdf
     $main = new main();
 
     $invoice_data = $main->getContentData(INVOICE_INFOS, $order->info['languages_id']);
-    $pdf_smarty->assign('ADDRESS_SMALL', $invoice_data['content_heading']);
-    $pdf_smarty->assign('ADDRESS_LARGE', $invoice_data['content_text']);
+    $pdf_smarty->assign('ADDRESS_SMALL', ((isset($invoice_data['content_heading'])) ? $invoice_data['content_heading'] : ''));
+    $pdf_smarty->assign('ADDRESS_LARGE', ((isset($invoice_data['content_text'])) ? $invoice_data['content_text'] : ''));
 
     // dont allow cache
     $pdf_smarty->caching = 0;

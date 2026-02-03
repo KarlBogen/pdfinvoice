@@ -82,7 +82,10 @@ defined('PDFINVOICE_MAIL_SUBJECT') OR define('PDFINVOICE_MAIL_SUBJECT', 'Ihre Re
 defined('PDFINVOICE_MAIL_SUBJECT_SLIP') OR define('PDFINVOICE_MAIL_SUBJECT_SLIP', 'Ihr Lieferschein');
 defined('TEXT_PDFINVOICE_SEITE') OR define('TEXT_PDFINVOICE_SEITE', 'Seite ');
 defined('TEXT_PDFINVOICE_SEITE_VON') OR define('TEXT_PDFINVOICE_SEITE_VON', ' von ');
+defined('PDFINVOICE_PRINT_ORDER_SEND') OR define('PDFINVOICE_PRINT_ORDER_SEND', 'Rechnung versenden');
+defined('PDFINVOICE_PRINT_ORDER_DL') OR define('PDFINVOICE_PRINT_ORDER_DL', 'Rechnung herunterladen');
 
+define('PDFINVOICE_CONFIRM_SEND', 'PDF senden?');
 define('BUTTON_GROUP_PDFINVOICE_INVOICE_TITLE', 'PDF Rechnung:');
 define('BUTTON_INVOICE_PDF', 'Rechnung PDF');
 define('BUTTON_PACKINGSLIP_PDF', 'Lieferschein PDF');

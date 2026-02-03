@@ -17,7 +17,7 @@
 defined('_VALID_XTC') or die('Direct Access to this location is not allowed.');
 
 define('MODULE_PDFINVOICE_COPYRIGHT', ' © by <a href="https://github.com/KarlBogen" target="_blank" style="color: #e67e22; font-weight: bold;">Karl</a>');
-define('MODULE_PDFINVOICE_VERSION', '1.0.1');
+define('MODULE_PDFINVOICE_VERSION', '1.0.2');
 
 if ($_SESSION['language_code'] == 'de') {
   define(
@@ -33,6 +33,8 @@ if ($_SESSION['language_code'] == 'de') {
   define('MODULE_PDFINVOICE_TEXT_TITLE', 'PDF Rechnung');
   define('MODULE_PDFINVOICE_INVOICE_STATUS_TITLE', 'Modul aktiv?');
   define('MODULE_PDFINVOICE_INVOICE_STATUS_DESC', '');
+  define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_TITLE', 'Rechnung ohne iFrame senden?');
+  define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_DESC', 'Bei "Ja" kann die PDF Rechnung direkt über einen Button gesendet oder heruntergeladen werden.');
   define('MODULE_PDFINVOICE_DELETE_BUTTON', 'Alle Moduldateien l&ouml;schen');
   define('MODULE_PDFINVOICE_DELETE_CONFIRM', 'Sollen alle Moduldateien gel&ouml;scht werden?<br>Hinweis: Das PDF-Verzeichnis <strong>' . DIR_ADMIN  . 'invoice</strong> wird nicht gel&ouml;scht!');
   define('MODULE_PDFINVOICE_DELETE_FILES_INFO', 'Das PDF-Verzeichnis "' . DIR_ADMIN  . 'invoice" wird nicht gel&ouml;scht!');
@@ -51,6 +53,8 @@ if ($_SESSION['language_code'] == 'de') {
   define('MODULE_PDFINVOICE_TEXT_TITLE', 'PDF Invoice');
   define('MODULE_PDFINVOICE_INVOICE_STATUS_TITLE', 'Module active?');
   define('MODULE_PDFINVOICE_INVOICE_STATUS_DESC', '');
+  define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_TITLE', 'Send invoice without iFrame?');
+  define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_DESC', 'If "Yes", the PDF invoice can be sent or downloaded directly via a button.');
   define('MODULE_PDFINVOICE_DELETE_BUTTON', 'Delete all modules files');
   define('MODULE_PDFINVOICE_DELETE_CONFIRM', 'Should all modules files be deleted?<br>Note: The folder <strong>' . DIR_ADMIN  . 'invoice</strong> would not be deleted!');
   define('MODULE_PDFINVOICE_DELETE_FILES_INFO', 'The folder "' . DIR_ADMIN  . 'invoice" would not be deleted!');
@@ -133,7 +137,7 @@ class pdfinvoice
 
   public function keys()
   {
-    return array('MODULE_PDFINVOICE_INVOICE_STATUS');
+    return array('MODULE_PDFINVOICE_INVOICE_STATUS', 'MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON');
   }
 
 
@@ -283,6 +287,7 @@ class pdfinvoice
       $config = array();
 
       $config['MODULE_PDFINVOICE_INVOICE_STATUS'] = "('MODULE_PDFINVOICE_INVOICE_STATUS', 'true', 6, 0, NULL, now(), NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),')";
+      $config['MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON'] = "('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON', 'false', 6, 0, NULL, now(), NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),')";
       $config['MODULE_PDFINVOICE_INVOICE_GROUP'] = "('MODULE_PDFINVOICE_INVOICE_GROUP', '" . $gr . "', 6, 0, NULL, now(), NULL, NULL)";
 
       $config['PDFINVOICE_FILENAME'] = "('PDFINVOICE_FILENAME', 'RE_{oID}', " . $gr . ", 10, NULL, now(), NULL, NULL)";

@@ -35,12 +35,22 @@ if (!isset($_GET['oID'])) {
 
 if (isset($_GET['send'])) {
   // erstellt und versendet PDF-Rechnung
-  $filePrefix = xtc_pdf_invoice($oID, true, false, true, true);
+  if ($_GET['send'] == 'asap') {
+    $filePrefix = xtc_pdf_invoice($oID, true);
+    xtc_redirect(xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action', 'send')) . 'oID=' . $oID . '&action=edit'), 'SSL');
+  } else {
+    $filePrefix = xtc_pdf_invoice($oID, true, false, true, true);
+  }
 
   // erstellt PDF-Rechnung
 } else {
   $filePrefix = xtc_pdf_invoice($oID, false);
 }
+
+if (isset($_GET['action'])) {
+  xtc_redirect('invoice/' . $filePrefix . '.pdf', 'SSL');
+}
+
 
 require(DIR_WS_INCLUDES . 'head.php');
 ?>
