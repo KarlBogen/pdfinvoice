@@ -1,6 +1,9 @@
 UNRELEASED
 
 
+
+1.0.2 [04.02.2026]
+- neue Einstellmöglichkeit im Systemmodul - Rechnungsadresse statt Kundenadresse als Anschrift
 - Anbindung zum Modul E-Rechnung von AGI geändert
 - neue Einstellmöglichkeit im Systemmodul - Rechnung senden / herunterladen ohne iFrame
 

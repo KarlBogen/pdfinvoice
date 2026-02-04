@@ -35,6 +35,8 @@ if ($_SESSION['language_code'] == 'de') {
   define('MODULE_PDFINVOICE_INVOICE_STATUS_DESC', '');
   define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_TITLE', 'Rechnung ohne iFrame senden?');
   define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_DESC', 'Bei "Ja" kann die PDF Rechnung direkt über einen Button gesendet oder heruntergeladen werden.');
+  define('MODULE_PDFINVOICE_INVOICE_ADDRESS_TITLE', 'Rechnungsadresse statt Kundenadresse verwenden?');
+  define('MODULE_PDFINVOICE_INVOICE_ADDRESS_DESC', 'Bei "Ja" wird in der PDF Rechnung die Rechnungsadresse statt der Kundenadresse als Anschrift genutzt.');
   define('MODULE_PDFINVOICE_DELETE_BUTTON', 'Alle Moduldateien l&ouml;schen');
   define('MODULE_PDFINVOICE_DELETE_CONFIRM', 'Sollen alle Moduldateien gel&ouml;scht werden?<br>Hinweis: Das PDF-Verzeichnis <strong>' . DIR_ADMIN  . 'invoice</strong> wird nicht gel&ouml;scht!');
   define('MODULE_PDFINVOICE_DELETE_FILES_INFO', 'Das PDF-Verzeichnis "' . DIR_ADMIN  . 'invoice" wird nicht gel&ouml;scht!');
@@ -55,6 +57,8 @@ if ($_SESSION['language_code'] == 'de') {
   define('MODULE_PDFINVOICE_INVOICE_STATUS_DESC', '');
   define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_TITLE', 'Send invoice without iFrame?');
   define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_DESC', 'If "Yes", the PDF invoice can be sent or downloaded directly via a button.');
+  define('MODULE_PDFINVOICE_INVOICE_ADDRESS_TITLE', 'Use billing address instead of customer address?');
+  define('MODULE_PDFINVOICE_INVOICE_ADDRESS_DESC', 'If "Yes" is selected, the billing address will be used as the address in the PDF invoice instead of the customer address.');
   define('MODULE_PDFINVOICE_DELETE_BUTTON', 'Delete all modules files');
   define('MODULE_PDFINVOICE_DELETE_CONFIRM', 'Should all modules files be deleted?<br>Note: The folder <strong>' . DIR_ADMIN  . 'invoice</strong> would not be deleted!');
   define('MODULE_PDFINVOICE_DELETE_FILES_INFO', 'The folder "' . DIR_ADMIN  . 'invoice" would not be deleted!');
@@ -137,7 +141,9 @@ class pdfinvoice
 
   public function keys()
   {
-    return array('MODULE_PDFINVOICE_INVOICE_STATUS', 'MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON');
+    return array( 'MODULE_PDFINVOICE_INVOICE_STATUS',
+                  'MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON',
+                  'MODULE_PDFINVOICE_INVOICE_ADDRESS');
   }
 
 
@@ -288,6 +294,7 @@ class pdfinvoice
 
       $config['MODULE_PDFINVOICE_INVOICE_STATUS'] = "('MODULE_PDFINVOICE_INVOICE_STATUS', 'true', 6, 0, NULL, now(), NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),')";
       $config['MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON'] = "('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON', 'false', 6, 0, NULL, now(), NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),')";
+      $config['MODULE_PDFINVOICE_INVOICE_ADDRESS'] = "('MODULE_PDFINVOICE_INVOICE_ADDRESS', 'false', 6, 0, NULL, now(), NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),')";
       $config['MODULE_PDFINVOICE_INVOICE_GROUP'] = "('MODULE_PDFINVOICE_INVOICE_GROUP', '" . $gr . "', 6, 0, NULL, now(), NULL, NULL)";
 
       $config['PDFINVOICE_FILENAME'] = "('PDFINVOICE_FILENAME', 'RE_{oID}', " . $gr . ", 10, NULL, now(), NULL, NULL)";

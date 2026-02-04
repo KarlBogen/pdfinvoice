@@ -57,15 +57,29 @@ class makePdf
     //include_once(DIR_WS_CLASSES . 'order.php');
     //$order = new order((int)$_GET['oID']);
 
-    $pdf_smarty->assign('address_label_customer', xtc_address_format($order->customer['format_id'], $order->customer, 1, '', '<br />'));
+    // neu eingefügt - setzt Rechnungsadresse statt Kundenadresse
+    if ($deliverSlip === false && MODULE_PDFINVOICE_INVOICE_ADDRESS == 'true') {
+      $pdf_smarty->assign('address_label_customer', xtc_address_format($order->billing['format_id'], $order->billing, 1, '', '<br />'));
+      // USt-IdNr. soll nur eingefügt werden, wenn Rechnungs- und Kundenadresse übereinstimmt
+      if ($order->billing['name'] == $order->customer['name']) {
+        if ($order->billing['postcode'] == $order->customer['postcode']) {
+          if ($order->billing['street_address'] == $order->customer['street_address']) {
+            $pdf_smarty->assign('csID', $order->customer['csID']);
+            $pdf_smarty->assign('vatID', $order->customer['vat_id']);
+          }
+        }
+      }
+      $pdf_smarty->assign('gender', $order->billing['gender']);
+      $pdf_smarty->assign('name', $order->billing['name']);
+    } else {
+      $pdf_smarty->assign('address_label_customer', xtc_address_format($order->customer['format_id'], $order->customer, 1, '', '<br />'));
+      $pdf_smarty->assign('csID', $order->customer['csID']);
+      $pdf_smarty->assign('vatID', $order->customer['vat_id']);
+      $pdf_smarty->assign('gender', $order->customer['gender']);
+      $pdf_smarty->assign('name', $order->customer['name']);
+    }
     $pdf_smarty->assign('address_label_shipping', xtc_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br />'));
     $pdf_smarty->assign('address_label_payment', xtc_address_format($order->billing['format_id'], $order->billing, 1, '', '<br />'));
-    $pdf_smarty->assign('csID', $order->customer['csID']);
-
-    $pdf_smarty->assign('vatID', $order->customer['vat_id']);
-
-    $pdf_smarty->assign('gender', $order->customer['gender']);
-    $pdf_smarty->assign('name', $order->customer['name']);
 
     // get products data - Klasse jetzt global
     //include_once(DIR_FS_CATALOG.DIR_WS_CLASSES .'xtcPrice.php');

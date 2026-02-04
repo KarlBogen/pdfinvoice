@@ -23,7 +23,7 @@ Die in diesem Verzeichnis liegende Datei "print_order_pdf_gray.html" in das Verz
 
 kopieren.
 
-Anschließend diese Datei kopieren, im gleichen Verzeichnis einfügen und umbenennen in "tpl.php".
+Anschließend die vorliegende Datei kopieren und im vorliegenden selben Verzeichnis, umbenannt in "tpl.php", einfügen.
 
 */
 
