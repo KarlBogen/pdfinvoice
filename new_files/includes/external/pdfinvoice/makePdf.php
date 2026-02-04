@@ -205,19 +205,14 @@ class makePdf
 
       /* BOF AGI factur_x 1/2 */
       if (!$deliverSlip && defined('MODULE_SYSTEM_FACTUR_X_STATUS') && MODULE_SYSTEM_FACTUR_X_STATUS == 'true') {
-        $tmp = xtc_db_query('SELECT bill_id, xml_data, bill_number FROM factur_x WHERE orders_id=' . (int)$order->info['orders_id'] . " ORDER BY created_at DESC LIMIT 1");
-        if (xtc_db_num_rows($tmp)) {
-          $factur_x = xtc_db_fetch_array($tmp);
-        } else {
-          foreach (auto_include(DIR_FS_EXTERNAL . 'factur_x/extra/create/', 'php') as $file) require($file);
-          if (!class_exists('FACTUR_X_ORDER')) {
-            require_once(DIR_FS_EXTERNAL . 'factur_x/factur_x_order.class.php');
-            $factur_x_order = new FACTUR_X_ORDER($order->info['orders_id']); // X-Rechnung initialisieren
-          }
-          $bill_id = $factur_x_order->create_new();
-          $tmp = xtc_db_query('SELECT bill_id, xml_data, bill_number FROM factur_x WHERE bill_id=' . $bill_id);
-          $factur_x = xtc_db_fetch_array($tmp);
+        foreach (auto_include(DIR_FS_EXTERNAL . 'factur_x/extra/create/', 'php') as $file) require($file);
+        if (!class_exists('FACTUR_X_ORDER')) {
+          require_once(DIR_FS_EXTERNAL . 'factur_x/factur_x_order.class.php');
+          $factur_x_order = new FACTUR_X_ORDER($order->info['orders_id']); // X-Rechnung initialisieren
         }
+        $bill_id = $factur_x_order->create_new();
+        $tmp = xtc_db_query('SELECT bill_id, xml_data, bill_number FROM factur_x WHERE bill_id=' . $bill_id);
+        $factur_x = xtc_db_fetch_array($tmp);
         if ($factur_x) {
           require_once('ext/factur_x.fpdf_zugferd.php');
           // EXTENDED muss gesetzt werden, da die XML-Daten "extended" kodiert sind
