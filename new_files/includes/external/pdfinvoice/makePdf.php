@@ -242,7 +242,7 @@ class makePdf
         // bei ZUGFerd-Rechnung darf das PDF nicht geschützt werden
         // nur Drucken erlaubt, kein User-Passwort, jedoch ein Master-Passwort
         if (PDFINVOICE_PROTECT_PDF == 'true') {
-          $html2pdf->pdf->SetProtection(array('print'), '', PDFINVOICE_MASTER_PASS);
+          $html2pdf->pdf->SetProtection(array('modify'), '', PDFINVOICE_MASTER_PASS);
         }
       }
       /* EOF AGI factur_x 1/2 */
