@@ -1,7 +1,7 @@
 UNRELEASED
 
 
-
+- Button "Bearbeiten" im Systemmodul hinzugefügt
 - Drucken, wenn Passwortschutz eingeschaltet, nicht möglich - behoben
 
 1.0.2 [04.02.2026]

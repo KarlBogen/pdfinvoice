@@ -82,6 +82,7 @@ class pdfinvoice
     $this->code = 'pdfinvoice';
     $this->title = MODULE_PDFINVOICE_TEXT_TITLE . MODULE_PDFINVOICE_COPYRIGHT . ' - Version: ' . MODULE_PDFINVOICE_VERSION;
     $this->description = '';
+    $this->description .= '<a class="button btnbox" style="text-align:center;" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=edit') . '">' . BUTTON_EDIT . '</a><br />';
     if (defined('MODULE_PDFINVOICE_INVOICE_STATUS')) $this->description .= '<a class="button btnbox but_green" style="text-align:center;" onclick="this.blur();" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=update') . '">Update</a><br /><br />';
     $this->description .= '<a class="button btnbox but_red" style="text-align:center;" onclick="return confirmLink(\'' . MODULE_PDFINVOICE_DELETE_CONFIRM . '\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom') . '">' . MODULE_PDFINVOICE_DELETE_BUTTON . '</a><br />';
     $this->description .= MODULE_PDFINVOICE_TEXT_DESCRIPTION;
