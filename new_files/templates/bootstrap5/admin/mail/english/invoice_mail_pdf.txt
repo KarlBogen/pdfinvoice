@@ -1,10 +1,16 @@
 
+{if isset($FORWARDER_MAIL) && $FORWARDER_MAIL === true}
+Dear Ladies and Gentlemen,
+
+relates to the order  {if $ORDER_NR}No. {$ORDER_NR}{/if} {if $ORDER_DATE}from {$ORDER_DATE}{/if}.
+{else}
 {if $GENDER == 'm'}Dear Mr.{elseif $GENDER == 'f'}Dear Ms./Mrs.{else}Hello{/if} {$LASTNAME},
 
 thank you for your order  {if $ORDER_NR}No. {$ORDER_NR}{/if} {if $ORDER_DATE}from {$ORDER_DATE}{/if}.
 
 {if $ORDER_LINK}Link to order:
 {$ORDER_LINK} {/if}
+{/if}
 
 We attached you a {$PDFINVOICE_TYPE} for your articles.
 

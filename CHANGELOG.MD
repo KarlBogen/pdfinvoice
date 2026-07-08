@@ -3,6 +3,7 @@ UNRELEASED
 
 
 1.0.3 [08.07.2026]
+- Mail-Template für englische Sprache geändert
 - Maildateien umbenannt um Konflikt mit PdfBillNext zu vermeiden
 - String-Konvertierung, falls kein "UTF-8", hinzugefügt - siehe noRiddle https://www.modified-shop.org/forum/index.php?topic=44019.msg416429#msg416429
 - Button "Bearbeiten" im Systemmodul hinzugefügt

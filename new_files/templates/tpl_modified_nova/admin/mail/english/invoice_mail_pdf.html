@@ -8,12 +8,19 @@
     <tr>
       <td>
         <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
-          <strong>{if $GENDER == 'm'}Dear Mr.{elseif $GENDER == 'f'}Dear Ms./Mrs.{else}Hello{/if} {$LASTNAME},</strong><br />
-          <br />
-          thank you for your order {if $ORDER_NR}No. {$ORDER_NR}{/if} {if $ORDER_DATE}from {$ORDER_DATE}{/if}.<br />
-          <br />
-          {if $ORDER_LINK}Link to order:
-          <a href="{$ORDER_LINK}">click here</a>
+          {if isset($FORWARDER_MAIL) && $FORWARDER_MAIL === true}
+            <strong>Dear Ladies and Gentlemen,</strong><br />
+            <br />
+            relates to the order {if $ORDER_NR}No. {$ORDER_NR}{/if} {if $ORDER_DATE}from {$ORDER_DATE}{/if}.
+            <br />
+          {else}
+            <strong>{if $GENDER == 'm'}Dear Mr.{elseif $GENDER == 'f'}Dear Ms./Mrs.{else}Hello{/if} {$LASTNAME},</strong><br />
+            <br />
+            thank you for your order {if $ORDER_NR}No. {$ORDER_NR}{/if} {if $ORDER_DATE}from {$ORDER_DATE}{/if}.<br />
+            <br />
+            {if $ORDER_LINK}Link to order:
+              <a href="{$ORDER_LINK}">click here</a>
+            {/if}
           {/if}
           <br />
           We attached you a {$PDFINVOICE_TYPE} for your articles.<br />
