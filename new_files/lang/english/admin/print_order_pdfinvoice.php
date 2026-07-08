@@ -16,7 +16,7 @@
 
 define('PDFINVOICE_PRINT_ORDER_PDFINVOICE_TITLE', 'PDF-Version of invoice');
 define('PDFINVOICE_CLOSE_WINDOW', 'Close window');
-define('PDFINVOICE_PRINT_ORDER_SEND', 'Send invoice via mail');
+defined('PDFINVOICE_PRINT_ORDER_SEND') OR define('PDFINVOICE_PRINT_ORDER_SEND', 'Send invoice via mail');
 define('PDFINVOICE_PRINT_ORDER_SEND_TEXT', 'Would you like to send the invoice via mail?');
-define('PDFINVOICE_PRINT_ORDER_DL', 'Download invoice');
+defined('PDFINVOICE_PRINT_ORDER_DL') OR define('PDFINVOICE_PRINT_ORDER_DL', 'Download invoice');
 define('PDFINVOICE_PRINT_ORDER_DL_TEXT', 'Download invoice only:');

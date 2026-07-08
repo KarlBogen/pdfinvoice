@@ -20,14 +20,15 @@ use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 
 // Code wurde hauptsächlich aus "admin/print_order.php" gemischt mit "admin/print_packingslip.php" übernommen
 
+#[AllowDynamicProperties]
 class makePdf
 {
 
-  var $fileprefix;
-  var $filename;
-  var $pdfhtml;
+  public $fileprefix;
+  public $filename;
+  public $pdfhtml;
 
-  function __construct($oID, $deliverSlip = false)
+  public function __construct($oID, $deliverSlip = false)
   {
     global $order;
 
@@ -247,6 +248,11 @@ class makePdf
       }
       /* EOF AGI factur_x 1/2 */
 
+      /* Konvertiert String zu UTF-8 siehe noRiddle https://www.modified-shop.org/forum/index.php?topic=44019.msg416429#msg416429 */
+      if (strtolower($_SESSION['language_charset']) != 'utf-8') {
+        $this->pdfhtml = encode_utf8($this->pdfhtml, $_SESSION['language_charset'], true);
+      }
+
       $html2pdf->writeHTML($this->pdfhtml);
 
       $html2pdf->output($this->filename, 'F');
@@ -307,8 +313,8 @@ class makePdf
       $smarty->assign('FORWARDER_MAIL', true);
     }
 
-    $html_mail = $smarty->fetch(DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/admin/mail/' . $_SESSION['language'] . '/invoice_mail.html');
-    $txt_mail = $smarty->fetch(DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/admin/mail/' . $_SESSION['language'] . '/invoice_mail.txt');
+    $html_mail = $smarty->fetch(DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/admin/mail/' . $_SESSION['language'] . '/invoice_mail_pdf.html');
+    $txt_mail = $smarty->fetch(DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/admin/mail/' . $_SESSION['language'] . '/invoice_mail_pdf.txt');
 
     // generate mail subject
     if ($deliverSlip === true) {

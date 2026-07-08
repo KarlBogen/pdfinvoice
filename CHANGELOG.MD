@@ -1,8 +1,12 @@
 UNRELEASED
 
 
+
+1.0.3 [08.07.2026]
+- Maildateien umbenannt um Konflikt mit PdfBillNext zu vermeiden
+- String-Konvertierung, falls kein "UTF-8", hinzugefügt - siehe noRiddle https://www.modified-shop.org/forum/index.php?topic=44019.msg416429#msg416429
 - Button "Bearbeiten" im Systemmodul hinzugefügt
-- Drucken, wenn Passwortschutz eingeschaltet, nicht möglich - behoben
+- Drucken nicht möglich, wenn Passwortschutz eingeschaltet - behoben
 
 1.0.2 [04.02.2026]
 - neue Einstellmöglichkeit im Systemmodul - Rechnungsadresse statt Kundenadresse als Anschrift

@@ -19,12 +19,12 @@ if (
   && MODULE_PDFINVOICE_INVOICE_STATUS == 'true'
 ) {
 
-  // Rechnung wird nach der Bestellung als Anhang einer einzelnen Mail versandt - Vorlage mail/admin/invoice_mail.txt
+  // Rechnung wird nach der Bestellung als Anhang einer einzelnen Mail versandt - Vorlage mail/admin/invoice_mail_pdf.txt
   if (PDFINVOICE_SEND_ORDER == 'true' && PDFINVOICE_SEND_WITH_ORDER_MAIL != 'true') {
     xtc_pdf_invoice((int)$insert_id, true);
   }
 
-  // Lieferschein wird nach der Bestellung als Anhang einer einzelnen Mail versandt - Vorlage mail/admin/invoice_mail.txt
+  // Lieferschein wird nach der Bestellung als Anhang einer einzelnen Mail versandt - Vorlage mail/admin/invoice_mail_pdf.txt
   if (PDFINVOICE_SEND_SLIP_WITH_ORDER == 'true') {
 
     require_once(DIR_FS_INC . 'xtc_pdf_invoice.inc.php');

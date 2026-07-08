@@ -16,7 +16,7 @@
 
 define('PDFINVOICE_PRINT_ORDER_PDFINVOICE_TITLE', 'PDF-Version der Rechnung');
 define('PDFINVOICE_CLOSE_WINDOW', 'Fenster schliessen');
-define('PDFINVOICE_PRINT_ORDER_SEND', 'Rechnung versenden');
+defined('PDFINVOICE_PRINT_ORDER_SEND') OR define('PDFINVOICE_PRINT_ORDER_SEND', 'Rechnung versenden');
 define('PDFINVOICE_PRINT_ORDER_SEND_TEXT', 'Soll die Rechnung verschickt werden?');
-define('PDFINVOICE_PRINT_ORDER_DL', 'Rechnung downloaden');
+defined('PDFINVOICE_PRINT_ORDER_DL') OR define('PDFINVOICE_PRINT_ORDER_DL', 'Rechnung herunterladen');
 define('PDFINVOICE_PRINT_ORDER_DL_TEXT', 'Rechnung nur herunterladen:');

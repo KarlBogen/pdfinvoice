@@ -198,14 +198,14 @@ class pdfinvoice
     $dirs_and_files[] = $shop_path . 'lang/german/extra/admin/pdfinvoice.php';
     $dirs_and_files[] = $shop_path . 'lang/german/extra/pdfinvoice.php';
 
-    $templates = array('tpl_modified', 'tpl_modified_nova', 'tpl_modified_responsive', 'xtc5');
+    $templates = array('bootstrap5', 'bootstrap5a', 'tpl_modified', 'tpl_modified_nova', 'tpl_modified_responsive', 'xtc5');
     foreach ($templates as $template) {
       $dirs_and_files[] = $shop_path . 'templates/' . $template . '/admin/print_order_pdf.html';
       $dirs_and_files[] = $shop_path . 'templates/' . $template . '/admin/print_packingslip_pdf.html';
-      $dirs_and_files[] = $shop_path . 'templates/' . $template . '/admin/mail/english/invoice_mail.html';
-      $dirs_and_files[] = $shop_path . 'templates/' . $template . '/admin/mail/english/invoice_mail.txt';
-      $dirs_and_files[] = $shop_path . 'templates/' . $template . '/admin/mail/german/invoice_mail.html';
-      $dirs_and_files[] = $shop_path . 'templates/' . $template . '/admin/mail/german/invoice_mail.txt';
+      $dirs_and_files[] = $shop_path . 'templates/' . $template . '/admin/mail/english/invoice_mail_pdf.html';
+      $dirs_and_files[] = $shop_path . 'templates/' . $template . '/admin/mail/english/invoice_mail_pdf.txt';
+      $dirs_and_files[] = $shop_path . 'templates/' . $template . '/admin/mail/german/invoice_mail_pdf.html';
+      $dirs_and_files[] = $shop_path . 'templates/' . $template . '/admin/mail/german/invoice_mail_pdf.txt';
       $dirs_and_files[] = $shop_path . 'templates/' . $template . '/img/logo_invoice.png';
       $dirs_and_files[] = $shop_path . 'templates/' . $template . '/lang/lang_english.pdf_strings';
       $dirs_and_files[] = $shop_path . 'templates/' . $template . '/lang/lang_german.pdf_strings';
