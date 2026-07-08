@@ -17,7 +17,7 @@
 defined('_VALID_XTC') or die('Direct Access to this location is not allowed.');
 
 define('MODULE_PDFINVOICE_COPYRIGHT', ' © by <a href="https://github.com/KarlBogen" target="_blank" style="color: #e67e22; font-weight: bold;">Karl</a>');
-define('MODULE_PDFINVOICE_VERSION', '1.0.2');
+define('MODULE_PDFINVOICE_VERSION', '1.0.3');
 
 if ($_SESSION['language_code'] == 'de') {
   define(
