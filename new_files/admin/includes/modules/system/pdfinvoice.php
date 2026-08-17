@@ -17,7 +17,7 @@
 defined('_VALID_XTC') or die('Direct Access to this location is not allowed.');
 
 define('MODULE_PDFINVOICE_COPYRIGHT', ' © by <a href="https://github.com/KarlBogen" target="_blank" style="color: #e67e22; font-weight: bold;">Karl</a>');
-define('MODULE_PDFINVOICE_VERSION', '1.0.3');
+define('MODULE_PDFINVOICE_VERSION', '1.0.4');
 
 if ($_SESSION['language_code'] == 'de') {
   define(
@@ -33,8 +33,8 @@ if ($_SESSION['language_code'] == 'de') {
   define('MODULE_PDFINVOICE_TEXT_TITLE', 'PDF Rechnung');
   define('MODULE_PDFINVOICE_INVOICE_STATUS_TITLE', 'Modul aktiv?');
   define('MODULE_PDFINVOICE_INVOICE_STATUS_DESC', '');
-  define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_TITLE', 'Rechnung ohne iFrame senden?');
-  define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_DESC', 'Bei "Ja" kann die PDF Rechnung direkt über einen Button gesendet oder heruntergeladen werden.');
+  define('MODULE_PDFINVOICE_INVOICE_DOWNLOAD_BY_REDIRECT_TITLE' , 'PDF-Download durch Redirection');
+  define('MODULE_PDFINVOICE_INVOICE_DOWNLOAD_BY_REDIRECT_DESC' , 'Browser-Umleitung f&uuml;r Artikeldownloads benutzen. Auf nicht Linux/Unix Systemen ausschalten.');
   define('MODULE_PDFINVOICE_INVOICE_ADDRESS_TITLE', 'Rechnungsadresse statt Kundenadresse verwenden?');
   define('MODULE_PDFINVOICE_INVOICE_ADDRESS_DESC', 'Bei "Ja" wird in der PDF Rechnung die Rechnungsadresse statt der Kundenadresse als Anschrift genutzt.');
   define('MODULE_PDFINVOICE_DELETE_BUTTON', 'Alle Moduldateien l&ouml;schen');
@@ -55,8 +55,8 @@ if ($_SESSION['language_code'] == 'de') {
   define('MODULE_PDFINVOICE_TEXT_TITLE', 'PDF Invoice');
   define('MODULE_PDFINVOICE_INVOICE_STATUS_TITLE', 'Module active?');
   define('MODULE_PDFINVOICE_INVOICE_STATUS_DESC', '');
-  define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_TITLE', 'Send invoice without iFrame?');
-  define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON_DESC', 'If "Yes", the PDF invoice can be sent or downloaded directly via a button.');
+  define('MODULE_PDFINVOICE_INVOICE_DOWNLOAD_BY_REDIRECT_TITLE' , 'PDF-Download by Redirect');
+  define('MODULE_PDFINVOICE_INVOICE_DOWNLOAD_BY_REDIRECT_DESC' , 'Use browser redirection for download. Disabled on non-Unix systems.');
   define('MODULE_PDFINVOICE_INVOICE_ADDRESS_TITLE', 'Use billing address instead of customer address?');
   define('MODULE_PDFINVOICE_INVOICE_ADDRESS_DESC', 'If "Yes" is selected, the billing address will be used as the address in the PDF invoice instead of the customer address.');
   define('MODULE_PDFINVOICE_DELETE_BUTTON', 'Delete all modules files');
@@ -143,7 +143,7 @@ class pdfinvoice
   public function keys()
   {
     return array( 'MODULE_PDFINVOICE_INVOICE_STATUS',
-                  'MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON',
+                  'MODULE_PDFINVOICE_INVOICE_DOWNLOAD_BY_REDIRECT',
                   'MODULE_PDFINVOICE_INVOICE_ADDRESS');
   }
 
@@ -282,6 +282,21 @@ class pdfinvoice
     }
   }
 
+  protected function update_table_config()
+  {
+    $obsolete_values_config = array();
+
+    $obsolete_values_config[] = 'MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON';
+
+    foreach ($obsolete_values_config as $obsolete_value) {
+      $query = xtc_db_query("SELECT configuration_value FROM " . TABLE_CONFIGURATION . " WHERE configuration_value = '" . $obsolete_value . "'");
+      $exist = xtc_db_num_rows($query);
+      if ($exist > 0) {
+        xtc_db_query("DELETE FROM " . TABLE_CONFIGURATION . " WHERE configuration_value = '" . $obsolete_value . "'");
+      }
+    }
+  }
+
   protected function get_config()
   {
     // select configuration_group_id dynamically, noRiddle
@@ -294,7 +309,7 @@ class pdfinvoice
       $config = array();
 
       $config['MODULE_PDFINVOICE_INVOICE_STATUS'] = "('MODULE_PDFINVOICE_INVOICE_STATUS', 'true', 6, 0, NULL, now(), NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),')";
-      $config['MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON'] = "('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON', 'false', 6, 0, NULL, now(), NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),')";
+      $config['MODULE_PDFINVOICE_INVOICE_DOWNLOAD_BY_REDIRECT'] = "('MODULE_PDFINVOICE_INVOICE_DOWNLOAD_BY_REDIRECT', 'true', 6, 0, NULL, now(), NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),')";
       $config['MODULE_PDFINVOICE_INVOICE_ADDRESS'] = "('MODULE_PDFINVOICE_INVOICE_ADDRESS', 'false', 6, 0, NULL, now(), NULL, 'xtc_cfg_select_option(array(\'true\', \'false\'),')";
       $config['MODULE_PDFINVOICE_INVOICE_GROUP'] = "('MODULE_PDFINVOICE_INVOICE_GROUP', '" . $gr . "', 6, 0, NULL, now(), NULL, NULL)";
 

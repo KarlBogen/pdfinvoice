@@ -20,8 +20,6 @@ if (
   defined('MODULE_PDFINVOICE_INVOICE_STATUS')
   && MODULE_PDFINVOICE_INVOICE_STATUS == 'true'
 ) {
-
-  defined('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON') or define('MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON', 'false');
 ?>
 
   <div class="div_box mrg5">
@@ -41,26 +39,15 @@ if (
           </div>
           <div class="flt-r">
             <?php
-            if (MODULE_PDFINVOICE_INVOICE_NOIFRAME_BUTTON !== 'true') {
-              include_once(DIR_WS_MODULES . 'iframe_box.php');
-              if ($order->info['ibn_billnr'] != '') {
+            include_once(DIR_WS_MODULES . 'iframe_box.php');
+            if ($order->info['ibn_billnr'] != '') {
             ?>
-                <span style="padding:5px; position:relative; top:4px; font-size:9pt; border:1px solid #aaaaaa; background-color: #ffffff;"><?php echo BUTTON_INVOICE_NR . ' ' . $order->info['ibn_billnr']; ?></span>
-              <?php
-                echo '<a class="button but_green" href="javascript:iframeBox_show(0, \'' . BUTTON_GROUP_PDFINVOICE_INVOICE_TITLE . '\',\'' . FILENAME_PRINT_ORDER_PDFINVOICE . '\', \'&oID=' . $_GET['oID'] . '\');" >' . BUTTON_INVOICE_PDF . '</a>';
-              } else {
-                echo '<a class="button ibillnr-btn" href="' . xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action')) . 'oID=' . $oID . '&action=custom&subaction=set_pdfinvoice_ibillnr') . '">' . BUTTON_BILL . '</a>';
-              }
-            } else {
-              if ($order->info['ibn_billnr'] != '') {
-              ?>
-                <span style="padding:5px; position:relative; top:4px; font-size:9pt; border:1px solid #aaaaaa; background-color: #ffffff;"><?php echo BUTTON_INVOICE_NR . ' ' . $order->info['ibn_billnr']; ?></span>
+              <span style="padding:5px; position:relative; top:4px; font-size:9pt; border:1px solid #aaaaaa; background-color: #ffffff;"><?php echo BUTTON_INVOICE_NR . ' ' . $order->info['ibn_billnr']; ?></span>
             <?php
-                echo '<a class="button but_green" href="' . xtc_href_link(FILENAME_PRINT_ORDER_PDFINVOICE, xtc_get_all_get_params(array('oID')) . 'oID=' . $oID . '&send=asap') . '" onclick="return confirm(\'' . PDFINVOICE_CONFIRM_SEND . '\');">' . PDFINVOICE_PRINT_ORDER_SEND . '</a>';
-                echo '<a class="button but_green" href="javascript:iframeBox_show(0, \'' . PDFINVOICE_PRINT_ORDER_DL . '\',\'' . FILENAME_PRINT_ORDER_PDFINVOICE . '\', \'&oID=' . $oID . '&action=download\');" >' . PDFINVOICE_PRINT_ORDER_DL . '</a>';
-              } else {
-                echo '<a class="button ibillnr-btn" href="' . xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action')) . 'oID=' . $oID . '&action=custom&subaction=set_pdfinvoice_ibillnr') . '">' . BUTTON_BILL . '</a>';
-              }
+              echo '<a class="button" href="' . xtc_href_link(FILENAME_PRINT_ORDER_PDFINVOICE, xtc_get_all_get_params(array('oID')) . 'oID=' . $oID . '&send=asap') . '" onclick="return confirm(\'' . PDFINVOICE_CONFIRM_SEND . '\');">' . PDFINVOICE_PRINT_ORDER_SEND . '</a>';
+              echo '<a class="button but_green" href="javascript:iframeBox_show(0, \'' . BUTTON_GROUP_PDFINVOICE_INVOICE_TITLE . '\',\'' . FILENAME_PRINT_ORDER_PDFINVOICE . '\', \'&oID=' . $_GET['oID'] . '\');" >' . BUTTON_INVOICE_PDF . '</a>';
+            } else {
+              echo '<a class="button ibillnr-btn" href="' . xtc_href_link(FILENAME_ORDERS, xtc_get_all_get_params(array('oID', 'action')) . 'oID=' . $oID . '&action=custom&subaction=set_pdfinvoice_ibillnr') . '">' . BUTTON_BILL . '</a>';
             }
             echo '<a class="button but_green" href="javascript:iframeBox_show(0, \'' . BUTTON_GROUP_PDFINVOICE_INVOICE_TITLE . '\',\'' . FILENAME_PRINT_PACKINGSLIP_PDFINVOICE . '\', \'&oID=' . $_GET['oID'] . '\');" >' . BUTTON_PACKINGSLIP_PDF . '</a>';
             ?>

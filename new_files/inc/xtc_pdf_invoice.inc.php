@@ -32,5 +32,5 @@ function xtc_pdf_invoice($oID, $send = false, $deliverSlip = false, $updateStatu
   }
 
   // we need the filename, if the pdf is attachment
-  return $filePrefix;
+  return $pdfdata->filePrefix;
 }

@@ -24,7 +24,7 @@ use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 class makePdf
 {
 
-  public $fileprefix;
+  public $filePrefix;
   public $filename;
   public $pdfhtml;
 
@@ -207,7 +207,7 @@ class makePdf
 
     try {
 
-      $html2pdf = new Html2Pdf('P', 'A4', 'de', true, 'UTF-8', array(0, 10, 0, 10));
+      $html2pdf = new Html2Pdf('P', 'A4', 'de', true, 'UTF-8', array(0, 10, 0, 10), 3);
       $html2pdf->pdf->SetDisplayMode('fullpage');
 
       $html2pdf->pdf->SetTitle(STORE_NAME . ' - ' . ($deliverSlip === false ? PDFINVOICE_MAIL_SUBJECT :  PDFINVOICE_MAIL_SUBJECT_SLIP));

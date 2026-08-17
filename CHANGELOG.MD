@@ -1,6 +1,9 @@
 UNRELEASED
 
 
+1.0.4 [17.08.2026]
+- direkter Zugriff auf PDF-Rechnung nicht mehr möglich
+- PDF/A-3 Unterstützung hinzugefügt
 
 1.0.3 [08.07.2026]
 - Mail-Template für englische Sprache geändert

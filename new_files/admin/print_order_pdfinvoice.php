@@ -47,10 +47,37 @@ if (isset($_GET['send'])) {
   $filePrefix = xtc_pdf_invoice($oID, false);
 }
 
-if (isset($_GET['action'])) {
-  xtc_redirect('invoice/' . $filePrefix . '.pdf', 'SSL');
-}
+if (MODULE_PDFINVOICE_INVOICE_DOWNLOAD_BY_REDIRECT == 'true' && function_exists('symlink')) {
 
+  define('DIR_FS_INVOICE_PUBLIC', DIR_FS_DOCUMENT_ROOT . DIR_ADMIN  . 'pub/');
+  require_once(DIR_FS_INC . 'xtc_random_name.inc.php');
+  require_once(DIR_FS_INC . 'xtc_unlink_temp_dir.inc.php');
+
+  // This will work only on Unix/Linux hosts
+  xtc_unlink_temp_dir(DIR_FS_INVOICE_PUBLIC);
+  $tempdir = xtc_random_name();
+  umask(0000);
+  mkdir(DIR_FS_INVOICE_PUBLIC . $tempdir, 0777);
+  if (!symlink(DIR_FS_DOCUMENT_ROOT . DIR_ADMIN  . 'invoice/' . $filePrefix . '.pdf', DIR_FS_INVOICE_PUBLIC . $tempdir . '/' . $filePrefix . '.pdf')) {
+    link(DIR_FS_DOCUMENT_ROOT . DIR_ADMIN  . 'invoice/' . $filePrefix . '.pdf', DIR_FS_INVOICE_PUBLIC . $tempdir . '/' . $filePrefix . '.pdf');
+  }
+} else {
+  require_once(DIR_FS_INC . 'readfile_chunked.inc.php');
+  //Set chunk size for download
+  $chunksize = 1 * (1024 * 1024);
+  // Now send the file with header() magic
+  header("Expires: Mon, 26 Nov 1962 00:00:00 GMT");
+  header("Last-Modified: " . gmdate("D,d M Y H:i:s") . " GMT");
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Pragma: no-cache");
+  header("Content-Type: Application/octet-stream");
+  header("Content-Length: " . filesize(DIR_FS_DOCUMENT_ROOT . DIR_ADMIN  . 'invoice/' . $filePrefix . '.pdf'));
+  header("Content-disposition: attachment; filename=\"" . $filePrefix . '.pdf' . "\"");
+  // This will work on all systems, but will need considerable resources
+  // We could also loop with fread($fp, 4096) to save memory
+  readfile_chunked(DIR_FS_DOCUMENT_ROOT . DIR_ADMIN . 'invoice/' . $filePrefix . '.pdf', $chunksize);
+  exit();
+}
 
 require(DIR_WS_INCLUDES . 'head.php');
 ?>
@@ -72,7 +99,7 @@ require(DIR_WS_INCLUDES . 'head.php');
             </tr>
             <tr>
               <td class="dataTableConfig col-left"><?php echo PDFINVOICE_PRINT_ORDER_DL_TEXT; ?></td>
-              <td class="dataTableConfig col-middle"><a class="button but_green" href="invoice/<?php echo $filePrefix; ?>.pdf"><?php echo PDFINVOICE_PRINT_ORDER_DL; ?></a></td>
+              <td class="dataTableConfig col-middle"><a class="button but_green" href="<?php echo 'pub/' . $tempdir . '/' . $filePrefix . '.pdf'; ?>"><?php echo PDFINVOICE_PRINT_ORDER_DL; ?></a></td>
             </tr>
             <tr>
               <td class="txta-l" colspan="3" style="border:none;">

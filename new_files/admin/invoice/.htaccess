@@ -1,0 +1,20 @@
+/* ------------------------------------------------------------
+  Module "PDFInvoice" made by Karl
+
+  based on
+  PDFInvoice NEXT by Robert Hoppe by Robert Hoppe
+  Copyright 2011 Robert Hoppe - xtcm@katado.com - http://www.katado.com
+  and
+  (c) 2015 ralph_84
+
+  modified eCommerce Shopsoftware
+  http://www.modified-shop.org
+
+  Released under the GNU General Public License
+-------------------------------------------------------------- */
+
+AuthType Basic
+AuthName "No access"
+AuthUserFile .htnopasswd
+AuthGroupFile /dev/null
+Require valid-user
